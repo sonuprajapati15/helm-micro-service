@@ -1,0 +1,18 @@
+project:
+  namespace: backend
+  app_name: config
+  autoscaling:
+    enabled: true
+    default_replica: 1
+  image:
+    name: config
+    containerPort: 8080
+  healthPath: /config/status
+  context: /config
+  resources:
+    limits:
+      cpu: 100m
+      memory: 128Mi
+    requests:
+      cpu: 50m # 500milliCPUs (1/2 CPU)
+      memory: 64Mi

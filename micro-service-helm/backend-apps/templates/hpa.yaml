@@ -1,0 +1,28 @@
+{{/*{{- if .Values.project.autoscaling.enabled }}*/}}
+{{/*apiVersion: autoscaling/v2beta1*/}}
+{{/*kind: HorizontalPodAutoscaler*/}}
+{{/*metadata:*/}}
+{{/*  name: {{ .Values.project.app_name }}*/}}
+{{/*  labels:*/}}
+{{/*    app: {{ .Values.project.app_name }}*/}}
+{{/*spec:*/}}
+{{/*  scaleTargetRef:*/}}
+{{/*    apiVersion: apps/v1*/}}
+{{/*    kind: Deployment*/}}
+{{/*    name: {{ .Values.project.app_name }}-deployment*/}}
+{{/*  minReplicas: {{ .Values.project.autoscaling.minReplicas }}*/}}
+{{/*  maxReplicas: {{ .Values.project.autoscaling.maxReplicas }}*/}}
+{{/*  metrics:*/}}
+{{/*    {{- if .Values.project.autoscaling.targetCPUUtilizationPercentage }}*/}}
+{{/*    - type: Resource*/}}
+{{/*      resource:*/}}
+{{/*        name: cpu*/}}
+{{/*        targetAverageUtilization: {{ .Values.project.autoscaling.targetCPUUtilizationPercentage }}*/}}
+{{/*    {{- end }}*/}}
+{{/*    {{- if .Values.project.autoscaling.targetMemoryUtilizationPercentage }}*/}}
+{{/*    - type: Resource*/}}
+{{/*      resource:*/}}
+{{/*        name: memory*/}}
+{{/*        targetAverageUtilization: {{ .Values.project.autoscaling.targetMemoryUtilizationPercentage }}*/}}
+{{/*    {{- end }}*/}}
+{{/*{{- end }}*/}}

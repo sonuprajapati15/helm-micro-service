@@ -1,0 +1,107 @@
+---
+# Source: backend-apps/templates/namespace.yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: backend
+---
+# Source: backend-apps/templates/secretMap.yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: default-backend-secrets
+  namespace: backend
+data:
+  CONFIG_MASTER_URL: MTAuMTQ3LjE3Ny4zOjU0MzI=
+  CONFIG_MASTER_USERNAME: c29udQ==
+  CONFIG_MASTER_PASS: c29udS5wcmFqYXBhdGk=
+  CONFIG_SLAVE_URL: MTAuMTQ3LjE3Ny42OjU0MzI=
+  CONFIG_SLAVE_USERNAME: c29udQ==
+  CONFIG_SLAVE_PASS: c29udS5wcmFqYXBhdGk=
+  ANALYSER_MASTER_URL: MTAuMTQ3LjE3Ny4zOjU0MzI=
+  ANALYSER_MASTER_USERNAME: c29udQ==
+  ANALYSER_MASTER_PASS: c29udS5wcmFqYXBhdGk=
+  ANALYSER_SLAVE_URL: MTAuMTQ3LjE3Ny42OjU0MzI=
+  ANALYSER_SLAVE_USERNAME: c29udQ==
+  ANALYSER_SLAVE_PASS: c29udS5wcmFqYXBhdGk=
+  RBAC_MASTER_URL: MTAuMTQ3LjE3Ny4zOjU0MzI=
+  RBAC_MASTER_USERNAME: c29udQ==
+  RBAC_MASTER_PASS: c29udS5wcmFqYXBhdGk=
+  RBAC_SLAVE_URL: MTAuMTQ3LjE3Ny42OjU0MzI=
+  RBAC_SLAVE_USERNAME: c29udQ==
+  RBAC_SLAVE_PASS: c29udS5wcmFqYXBhdGk=
+  REDIS_HOST: MTAuMTQ3LjE3Ni4z
+  REDIS_PASS: IA==
+---
+# Source: backend-apps/templates/configMap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: default-backend-configs
+  namespace: backend
+data:
+  CONFIG_URL: config-service
+  ANALYZER_URL: analyzer-service
+  RBAC_URL: rbac-service
+  GATEWAY_URL: gateway-service
+  KONG_URL: kong-service
+  BOOTSTRAP_SERVER: 10.0.0.15:9092
+  TZ: Asia/Kolkata
+  REDIS_PORT: "6379"
+  REDIS_TIMEOUT: "60000"
+  REDIS_CONNECTION_MAXIMUM_POOL_SIZE: "10"
+  REDIS_CONNECTION_MINIMUM_IDLE: "2"
+  SERVER_PORT: "8080"
+  JAVA_OPTS: -Xmx8G -Xms1G
+  KAFKA_HEAP_OPTS: -Xmx8G -Xms1G
+  JVM_ARGS: -Xmx8G -Xms1G
+---
+# Source: backend-apps/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: rbac-service
+  namespace: backend
+  labels:
+    app: rbac
+spec:
+  selector:
+    app: rbac
+    tier: backend
+  ports:
+    - port: 80
+      targetPort: 8080
+      protocol: TCP
+      name: rbac-service
+---
+# Source: backend-apps/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rbac-deployment
+  namespace: backend
+  labels:
+    app: rbac
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rbac
+      tier: backend
+  template:
+    metadata:
+      labels:
+        app: rbac
+        tier: backend
+    spec: # Pod spec
+      containers:
+        - name: rbac
+          imagePullPolicy: Always
+          image: asia-south1-docker.pkg.dev/project-jiomarket-non-prod/ab-testing/rbac:latest
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: default-backend-configs
+            - secretRef:
+                name: default-backend-secrets

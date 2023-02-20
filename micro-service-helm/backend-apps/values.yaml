@@ -1,0 +1,80 @@
+project:
+  namespace: backend
+  tier: backend
+  app_name: demo
+  image_pull_policy: Always
+  autoscaling:
+    default_replica: 1
+    enabled: false
+    minReplicas: 1
+    maxReplicas: 6
+    targetCPUUtilizationPercentage: 70
+    targetMemoryUtilizationPercentage: 70
+  TZ: Asia/Kolkata
+  java_heap_config: "-Xmx8G -Xms1G"
+  context:
+  service_port: 80
+  target_port: 8080
+  image:
+    containerPort: 8080
+    registry: asia-south1-docker.pkg.dev/project-jiomarket-non-prod/ab-testing/
+    name: abtesting-null
+    tag: helm
+  default_configs: default-backend-configs
+  default_secrets: default-backend-secrets
+  resources:
+    limits:
+      cpu: 100m
+      memory: 128Mi
+    requests:
+      cpu: 50m # 500milliCPUs (1/2 CPU)
+      memory: 64Mi
+  services:
+    config:
+      name: config-service
+    gateway:
+      name: gateway-service
+    rbac:
+      name: rbac-service
+    analyzer:
+      name: analyzer-service
+    kong:
+      name: kong
+      endpoint: kong-service
+  kafka:
+    bootstrap_servers: 10.0.0.15:9092
+  redis:
+    host: MTAuMTQ3LjE3Ni4z
+    passowrd: IA==
+    port: 6379
+    timeout: 60000
+    max_pool_connection_size: 10
+    min_idle_connection: 2
+  postgres:
+    config:
+      master:
+        url: MTAuMTQ3LjE3Ny4zOjU0MzI=
+        username: c29udQ==
+        password: c29udS5wcmFqYXBhdGk=
+      slave:
+        url: MTAuMTQ3LjE3Ny42OjU0MzI=
+        username: c29udQ==
+        password: c29udS5wcmFqYXBhdGk=
+    rbac:
+      master:
+        url: MTAuMTQ3LjE3Ny4zOjU0MzI=
+        username: c29udQ==
+        password: c29udS5wcmFqYXBhdGk=
+      slave:
+        url: MTAuMTQ3LjE3Ny42OjU0MzI=
+        username: c29udQ==
+        password: c29udS5wcmFqYXBhdGk=
+    analyzer:
+      master:
+        url: MTAuMTQ3LjE3Ny4zOjU0MzI=
+        username: c29udQ==
+        password: c29udS5wcmFqYXBhdGk=
+      slave:
+        url: MTAuMTQ3LjE3Ny42OjU0MzI=
+        username: c29udQ==
+        password: c29udS5wcmFqYXBhdGk=

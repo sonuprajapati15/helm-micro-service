@@ -1,0 +1,18 @@
+project:
+  namespace: backend
+  app_name: rbac
+  autoscaling:
+    enabled: true
+    default_replica: 1
+  image:
+    name: rbac
+    containerPort: 8080
+  healthPath: /rbac/status
+  context: /rbac
+  resources:
+    limits:
+      cpu: 100m
+      memory: 1024Mi
+    requests:
+      cpu: 50m # 500milliCPUs (1/2 CPU)
+      memory: 128Mi
