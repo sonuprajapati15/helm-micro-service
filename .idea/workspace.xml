@@ -1,7 +1,194 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4e28c026-ab83-4e03-8650-26f34b2372fb" name="Changes" comment="" />
+    <list default="true" id="4e28c026-ab83-4e03-8650-26f34b2372fb" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/azure-pipelines.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/backend-apps/.helmignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/backend-apps/Chart.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/backend-apps/apps/analyzer.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/backend-apps/apps/config-deployment.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/backend-apps/apps/config.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/backend-apps/apps/gateway-deployment.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/backend-apps/apps/gateway.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/backend-apps/apps/rbac.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/backend-apps/demo-app/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/backend-apps/demo-app/analyzer-app.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/backend-apps/demo-app/config-app.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/backend-apps/demo-app/gateway-app.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/backend-apps/demo-app/rbac-app.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/backend-apps/install.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/backend-apps/templates/NOTES.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/backend-apps/templates/_helpers.tpl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/backend-apps/templates/configMap.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/backend-apps/templates/deployment.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/backend-apps/templates/hpa.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/backend-apps/templates/namespace.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/backend-apps/templates/secretMap.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/backend-apps/templates/service.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/backend-apps/values.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/frontend-apps/.helmignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/frontend-apps/Chart.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/frontend-apps/apps/abtesting-deployment.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/frontend-apps/apps/abtesting-ui.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/frontend-apps/demo-app/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/frontend-apps/demo-app/ui-app.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/frontend-apps/install.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/frontend-apps/templates/configMap.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/frontend-apps/templates/deployment.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/frontend-apps/templates/hpa.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/frontend-apps/templates/namespace.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/frontend-apps/templates/service.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/frontend-apps/values.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/kubernates-setup/cluster-setup.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/kubernates-setup/fluentd/dockerfiles/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/kubernates-setup/fluentd/dockerfiles/Gemfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/kubernates-setup/fluentd/dockerfiles/Gemfile.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/kubernates-setup/fluentd/dockerfiles/entrypoint.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/kubernates-setup/fluentd/dockerfiles/plugins/parser_kubernetes.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/kubernates-setup/fluentd/dockerfiles/plugins/parser_multiline_kubernetes.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/kubernates-setup/fluentd/fluentd-configmap.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/kubernates-setup/fluentd/fluentd-rbac.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/kubernates-setup/fluentd/fluentd.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/kubernates-setup/fluentd/install.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/kubernates-setup/fluentd/namespace.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/kubernates-setup/k8-gateways/demo-app/demo-app.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/kubernates-setup/k8-gateways/gateways/gateway.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/kubernates-setup/k8-gateways/gateways/monitoring-gateway.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/kubernates-setup/k8-gateways/ingress/istio-ingress-monitoring.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/kubernates-setup/k8-gateways/ingress/istio-ingress.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/kubernates-setup/k8-gateways/install.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/kubernates-setup/k8-gateways/virtual-services/core-service-vc.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/kubernates-setup/k8-gateways/virtual-services/monitoring-service-vc.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/kubernates-setup/kiali/install.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/kubernates-setup/kiali/kiali-cr-token.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/kubernates-setup/kiali/kiali.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/kubernates-setup/kiali/namespace.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/kubernates-setup/kibana/install.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/kubernates-setup/kibana/kibana.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/kubernates-setup/kibana/namespace.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/kubernates-setup/konga-ui/install.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/kubernates-setup/konga-ui/konga-ui.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/addition-expoters/elasticsearch/elasticsearch.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/addition-expoters/elasticsearch/install.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/addition-expoters/kafka/install.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/addition-expoters/kafka/kafka.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/addition-expoters/nginx-proxy/install.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/addition-expoters/nginx-proxy/proxy.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/addition-expoters/postgres/install.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/addition-expoters/postgres/postgres.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/addition-expoters/redis/install.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/addition-expoters/redis/redis.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/install.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/alert-manager/alertmanager-alertmanager.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/alert-manager/alertmanager-networkPolicy.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/alert-manager/alertmanager-podDisruptionBudget.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/alert-manager/alertmanager-prometheusRule.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/alert-manager/alertmanager-secret.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/alert-manager/alertmanager-service.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/alert-manager/alertmanager-serviceAccount.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/alert-manager/alertmanager-serviceMonitor.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/blackbox/blackboxExporter-clusterRole.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/blackbox/blackboxExporter-clusterRoleBinding.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/blackbox/blackboxExporter-configuration.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/blackbox/blackboxExporter-deployment.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/blackbox/blackboxExporter-networkPolicy.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/blackbox/blackboxExporter-service.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/blackbox/blackboxExporter-serviceAccount.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/blackbox/blackboxExporter-serviceMonitor.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/grafana/grafana-config.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/grafana/grafana-dashboardDatasources.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/grafana/grafana-dashboardDefinitions.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/grafana/grafana-dashboardSources.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/grafana/grafana-deployment.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/grafana/grafana-networkPolicy.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/grafana/grafana-prometheusRule.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/grafana/grafana-service.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/grafana/grafana-serviceAccount.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/grafana/grafana-serviceMonitor.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/grafana/v1/grafana.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/kube-state-metrics/kubePrometheus-prometheusRule.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/kube-state-metrics/kubeStateMetrics-clusterRole.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/kube-state-metrics/kubeStateMetrics-clusterRoleBinding.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/kube-state-metrics/kubeStateMetrics-deployment.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/kube-state-metrics/kubeStateMetrics-networkPolicy.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/kube-state-metrics/kubeStateMetrics-prometheusRule.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/kube-state-metrics/kubeStateMetrics-service.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/kube-state-metrics/kubeStateMetrics-serviceAccount.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/kube-state-metrics/kubeStateMetrics-serviceMonitor.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/kube-state-metrics/kubernetesControlPlane-prometheusRule.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/kube-state-metrics/kubernetesControlPlane-serviceMonitorApiserver.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/kube-state-metrics/kubernetesControlPlane-serviceMonitorCoreDNS.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/kube-state-metrics/kubernetesControlPlane-serviceMonitorKubeControllerManager.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/kube-state-metrics/kubernetesControlPlane-serviceMonitorKubeScheduler.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/kube-state-metrics/kubernetesControlPlane-serviceMonitorKubelet.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/node-expoter/nodeExporter-clusterRole.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/node-expoter/nodeExporter-clusterRoleBinding.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/node-expoter/nodeExporter-daemonset.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/node-expoter/nodeExporter-networkPolicy.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/node-expoter/nodeExporter-prometheusRule.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/node-expoter/nodeExporter-service.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/node-expoter/nodeExporter-serviceAccount.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/node-expoter/nodeExporter-serviceMonitor.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/prometheous-addon/configmap.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/prometheous-addon/install.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/prometheous-addon/prometheous.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/prometheous-addon/prometheus-pvc.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/prometheus/additional-config/prometheus-additional.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/prometheus/additional-scrape-configs.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/prometheus/prometheus-clusterRole.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/prometheus/prometheus-clusterRoleBinding.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/prometheus/prometheus-networkPolicy.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/prometheus/prometheus-podDisruptionBudget.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/prometheus/prometheus-prometheus.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/prometheus/prometheus-prometheusRule.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/prometheus/prometheus-roleBindingConfig.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/prometheus/prometheus-roleBindingSpecificNamespaces.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/prometheus/prometheus-roleConfig.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/prometheus/prometheus-roleSpecificNamespaces.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/prometheus/prometheus-service.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/prometheus/prometheus-serviceAccount.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/prometheus/prometheus-serviceMonitor.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/prometheus/prometheus.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/prometheus/prometheusAdapter-apiService.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/prometheus/prometheusAdapter-clusterRole.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/prometheus/prometheusAdapter-clusterRoleAggregatedMetricsReader.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/prometheus/prometheusAdapter-clusterRoleBinding.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/prometheus/prometheusAdapter-clusterRoleBindingDelegator.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/prometheus/prometheusAdapter-clusterRoleServerResources.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/prometheus/prometheusAdapter-configMap.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/prometheus/prometheusAdapter-deployment.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/prometheus/prometheusAdapter-networkPolicy.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/prometheus/prometheusAdapter-podDisruptionBudget.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/prometheus/prometheusAdapter-roleBindingAuthReader.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/prometheus/prometheusAdapter-service.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/prometheus/prometheusAdapter-serviceAccount.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/prometheus/prometheusAdapter-serviceMonitor.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/prometheus/prometheusOperator-clusterRole.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/prometheus/prometheusOperator-clusterRoleBinding.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/prometheus/prometheusOperator-deployment.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/prometheus/prometheusOperator-networkPolicy.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/prometheus/prometheusOperator-prometheusRule.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/prometheus/prometheusOperator-service.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/prometheus/prometheusOperator-serviceAccount.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/kube-prom-setup/prometheus/prometheusOperator-serviceMonitor.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/setup/0alertmanagerConfigCustomResourceDefinition.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/setup/0alertmanagerCustomResourceDefinition.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/setup/0podmonitorCustomResourceDefinition.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/setup/0probeCustomResourceDefinition.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/setup/0prometheusCustomResourceDefinition.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/setup/0prometheusruleCustomResourceDefinition.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/setup/0servicemonitorCustomResourceDefinition.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/setup/0thanosrulerCustomResourceDefinition.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/setup/grafana-pvc.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/setup/namespace.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/monitoring/setup/prometheus-pvc.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/nginx/fluentd/fluent.conf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/nginx/fluentd/fluentd.service" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/nginx/nginx.conf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/micro-service-helm/Abtesting-helm/prod-deployment.md" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -54,9 +241,9 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="NimRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+    <configuration default="true" type="Application" factoryName="Application">
       <method v="2">
-        <option name="nim.task.build.to.cache" enabled="true" />
+        <option name="Make" enabled="true" />
       </method>
     </configuration>
   </component>
@@ -69,6 +256,7 @@
       <option name="presentableId" value="Default" />
       <updated>1679074646127</updated>
       <workItem from="1679074647848" duration="192000" />
+      <workItem from="1679077208652" duration="67000" />
     </task>
     <servers />
   </component>
