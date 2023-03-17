@@ -374,7 +374,7 @@ chmod 777 /tmp/elastic-certificates.p12
                      declarative_config = {PATH_TO_KONG.CONF_FILE}
 5. upgrade ulimit 
 
-         ulimit -n 8192
+         ulimit -n 65535
 6. Start Kong Gateway. [run kong as a non-root user](https://docs.konghq.com/gateway/3.1.x/production/running-kong/kong-user/)
 
          kong start -c {PATH_TO_KONG.CONF_FILE}
@@ -427,13 +427,16 @@ chmod 777 /tmp/elastic-certificates.p12
       
                 echo -e "Package: *\nPin: origin nginx.org\nPin: release o=nginx\nPin-Priority: 900\n" \
                 | sudo tee /etc/apt/preferences.d/99nginx
-      8. Install the NGINX package:
+      8. set `ulimit` by below command
 
-             sudo apt-get update
+               ulimit -n 65535
+      9. Install the NGINX package:
+
+               sudo apt-get update
       9. Install the NGINX Open Source package:
 
-             sudo apt update
-             sudo apt install nginx
+                sudo apt update
+                sudo apt install nginx
       10. Verify the installation:
 
               sudo nginx -v
