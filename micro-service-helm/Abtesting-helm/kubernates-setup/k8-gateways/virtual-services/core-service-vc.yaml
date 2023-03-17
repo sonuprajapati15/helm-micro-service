@@ -1,0 +1,61 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  namespace: default
+  name: core-service-vc
+spec:
+  gateways:
+    - istio-ingress/istio-gateway
+  hosts:
+    - "*"
+  http:
+  - name: analyzer-path
+    match:
+    - uri:
+        prefix: /analyzer
+    route:
+    - destination:
+        host: analyzer-service.default.svc.cluster.local
+    retries:
+      attempts: 3
+      perTryTimeout: 10s
+  - name: config-path
+    match:
+    - uri:
+        prefix: /config
+    route:
+    - destination:
+        host: config-service.default.svc.cluster.local
+    retries:
+      attempts: 3
+      perTryTimeout: 10s
+  - name: gateway-path
+    match:
+    - uri:
+        prefix: /gateway
+    route:
+    - destination:
+        host: gateway-service.default.svc.cluster.local
+    retries:
+      attempts: 3
+      perTryTimeout: 10s
+  - name: rbac-path
+    match:
+    - uri:
+        prefix: /rbac
+    route:
+    - destination:
+        host: rbac-service.default.svc.cluster.local
+    retries:
+      attempts: 3
+      perTryTimeout: 10s
+  - name: abtesting-ui-path"
+    match:
+    - uri:
+        prefix: /
+    route:
+    - destination:
+        host: abtesting-ui-service.default.svc.cluster.local
+    retries:
+      attempts: 3
+      perTryTimeout: 10s

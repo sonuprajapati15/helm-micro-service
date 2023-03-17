@@ -1,0 +1,68 @@
+---
+# Source: elasticsearch/templates/namespace.yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: monitoring
+  labels:
+    istio-injection: enabled
+---
+# Source: monitoring-apps/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-exp-service
+  namespace: monitoring
+  labels:
+    app: redis-exp
+spec:
+  selector:
+    app: redis-exp
+    tier: monitoring
+  ports:
+    - port: 9121
+      targetPort: redis-exp-port
+      protocol: TCP
+      name: redis-exp-service
+---
+# Source: monitoring-apps/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-exp
+  namespace: monitoring
+  labels:
+    app: redis-exp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis-exp
+      tier: monitoring
+  template:
+    metadata:
+      labels:
+        app: redis-exp
+        tier: monitoring
+    spec: # Pod spec
+      containers:
+        - name: redis-exp
+          image: oliver006/redis_exporter
+          ports:
+            - containerPort: 9121
+              name: redis-exp-port
+          env:
+            - name: REDIS_ADDR
+              value: "10.99.0.5:6379"
+            - name: REDIS_USER
+              value:
+            - name: REDIS_PASSWORD
+              value:
+          resources:
+            limits:
+              cpu: 500m
+              memory: "512Mi"
+            requests:
+              cpu: 300m # 30milliCPUs (1/2 CPU)
+              memory: "128Mi"
+

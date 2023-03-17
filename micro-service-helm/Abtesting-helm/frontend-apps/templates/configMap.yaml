@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.project.default_configs}}
+  namespace: {{ .Values.project.namespace}}
+data:
+  TZ: {{ .Values.project.TZ}}
+  SERVER_PORT: {{quote .Values.project.image.containerPort}}
+  NEXT_PUBLIC_API_URL: {{ .Values.project.base_url}}

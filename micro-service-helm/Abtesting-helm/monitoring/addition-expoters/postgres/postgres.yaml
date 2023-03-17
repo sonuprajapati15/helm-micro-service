@@ -1,0 +1,86 @@
+---
+# Source: postgres/templates/namespace.yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: monitoring
+  labels:
+    istio-injection: enabled
+---
+# Source: monitoring-apps/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-exp-service
+  namespace: monitoring
+  labels:
+    app: postgres-exp
+spec:
+  selector:
+    app: postgres-exp
+    tier: monitoring
+  ports:
+    - port: 9187
+      targetPort: ab-exp-port
+      protocol: TCP
+      name: ab-exp-port
+    - port: 9188
+      targetPort: kong-exp-port
+      protocol: TCP
+      name: kong-exp-port
+---
+# Source: monitoring-apps/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-exp
+  namespace: monitoring
+  labels:
+    app: postgres-exp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres-exp
+      tier: monitoring
+  template:
+    metadata:
+      labels:
+        app: postgres-exp
+        tier: monitoring
+    spec: # Pod spec
+      containers:
+        - name: ab-master
+          image: prometheuscommunity/postgres-exporter
+          ports:
+            - containerPort: 9187
+              name: ab-exp-port
+          args:
+            - "--web.listen-address=:9187"
+          env:
+            - name: DATA_SOURCE_NAME
+              value: postgresql://expoter:expoter@10.99.1.5:5432/postgres?sslmode=disable #,postgresql://expoter:expoter@10.99.1.7:5432/postgres?sslmode=disable #postgresql://kong:kong@10.99.1.12:5432/postgres?sslmode=disable
+          resources:
+            limits:
+              cpu: 500m
+              memory: "256Mi"
+            requests:
+              cpu: 300m # 30milliCPUs (1/2 CPU)
+              memory: "128Mi"
+        - name: kong-master
+          image: prometheuscommunity/postgres-exporter
+          ports:
+            - containerPort: 9188
+              name: kong-exp-port
+          args:
+            - "--web.listen-address=:9188"
+          env:
+            - name: DATA_SOURCE_NAME
+              value: postgresql://kong:kong@10.99.1.12:5432/postgres?sslmode=disable
+          resources:
+            limits:
+              cpu: 500m
+              memory: "256Mi"
+            requests:
+              cpu: 300m # 30milliCPUs (1/2 CPU)
+              memory: "128Mi"

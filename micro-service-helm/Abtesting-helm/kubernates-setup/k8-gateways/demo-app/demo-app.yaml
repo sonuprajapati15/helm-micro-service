@@ -1,0 +1,53 @@
+---
+# Source: frontend-apps/templates/namespace.yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: frontend
+  labels:
+    istio-injection: enabled
+---
+# Source: frontend-apps/templates/istio-ingress.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app
+  namespace: frontend
+  labels:
+    app: app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+      tier: frontend
+  template:
+    metadata:
+      labels:
+        app: app
+        tier: frontend
+    spec: # Pod spec
+#      serviceAccountName: istio-ingress/istio-gateway
+      containers:
+        - name: app
+          imagePullPolicy: Always
+          image: yeasy/simple-web:latest
+          ports:
+            - containerPort: 80
+---
+# Source: frontend-apps/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-service
+  namespace: frontend
+  labels:
+    app: app
+spec:
+  selector:
+    app: app
+    tier: frontend
+  ports:
+    - port: 5008
+      targetPort: 80
+      protocol: TCP

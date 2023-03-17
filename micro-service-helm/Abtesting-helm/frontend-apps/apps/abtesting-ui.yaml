@@ -1,0 +1,102 @@
+---
+# Source: frontend-apps/templates/namespace.yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: default
+  labels:
+    istio-injection: enabled
+---
+# Source: frontend-apps/templates/configMap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: default-frontend-configs
+  namespace: default
+data:
+  TZ: Asia/Kolkata
+  SERVER_PORT: "8080"
+  NEXT_PUBLIC_API_URL: https://abtesting-sit.com
+---
+# Source: frontend-apps/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: abtesting-ui-service
+  namespace: default
+  labels:
+    app: abtesting-ui
+spec:
+  selector:
+    app: abtesting-ui
+    tier: frontend
+  ports:
+    - port: 5000
+      targetPort: 8080
+      protocol: TCP
+      name: abtesting-ui-service
+---
+# Source: frontend-apps/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: abtesting-ui-deployment
+  namespace: default
+  labels:
+    app: abtesting-ui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: abtesting-ui
+      tier: frontend
+  template:
+    metadata:
+      labels:
+        app: abtesting-ui
+        tier: frontend
+    spec: # Pod spec
+      containers:
+        - name: abtesting-ui
+          imagePullPolicy: Always
+          image: asia-south1-docker.pkg.dev/project-jiomarket-non-prod/ab-testing/abtesting-ui:latest
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: default-frontend-configs
+          resources:
+            requests:
+              memory: 2Gi
+              cpu: 1200m
+            limits:
+              memory: 4Gi
+              cpu: 2000m
+---
+# Source: frontend-apps/templates/hpa.yaml
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: abtesting-ui
+  labels:
+    app: abtesting-ui
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: abtesting-ui-deployment
+  minReplicas: 1
+  maxReplicas: 3
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          averageUtilization: 85
+          type: Utilization
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          averageUtilization: 85
+          type: Utilization

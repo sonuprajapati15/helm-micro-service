@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.project.app_name }}-deployment
+  namespace: {{ .Values.project.namespace }}
+  labels:
+    app: {{ .Values.project.app_name }}
+spec:
+  replicas: {{ .Values.project.autoscaling.default_replica }}
+  selector:
+    matchLabels:
+      app: {{ .Values.project.app_name }}
+      tier: {{ .Values.project.tier }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.project.app_name }}
+        tier: {{ .Values.project.tier }}
+    spec: # Pod spec
+      containers:
+        - name: {{ .Values.project.app_name }}
+          imagePullPolicy: {{ .Values.project.image_pull_policy}}
+          image: {{ .Values.project.image.registry}}{{ .Values.project.image.name}}:{{.Values.project.image.tag}}
+          ports:
+            - containerPort: {{ .Values.project.image.containerPort}}
+          envFrom:
+            - configMapRef:
+                name: {{ .Values.project.default_configs}}
+          resources:
+            requests:
+              memory: {{ .Values.project.resources.requests.memory}}
+              cpu: {{ .Values.project.resources.requests.cpu}}
+            limits:
+              memory: {{ .Values.project.resources.limits.memory}}
+              cpu: {{ .Values.project.resources.limits.cpu}}

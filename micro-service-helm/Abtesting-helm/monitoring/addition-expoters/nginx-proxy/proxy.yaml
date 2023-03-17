@@ -1,0 +1,62 @@
+---
+# Source: nginx-reverse-proxy/templates/namespace.yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: monitoring
+  labels:
+    istio-injection: enabled
+---
+# Source: monitoring-apps/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-exp-service
+  namespace: monitoring
+  labels:
+    app: nginx-exp
+spec:
+  selector:
+    app: nginx-exp
+    tier: monitoring
+  ports:
+    - port: 9113
+      targetPort: 9113
+      protocol: TCP
+      name: nginx-exp-service
+---
+# Source: monitoring-apps/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-exp
+  namespace: monitoring
+  labels:
+    app: nginx-exp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-exp
+      tier: monitoring
+  template:
+    metadata:
+      labels:
+        app: nginx-exp
+        tier: monitoring
+    spec: # Pod spec
+      containers:
+        - name: nginx-exp
+          imagePullPolicy: Always
+          image: nginx/nginx-prometheus-exporter:0.10.0
+          ports:
+            - containerPort: 9113
+          args:
+            - "--nginx.scrape-uri=http://10.10.0.2:8080/basic_status"
+          resources:
+            limits:
+              cpu: 500m
+              memory: "256Mi"
+            requests:
+              cpu: 300m # 30milliCPUs (1/2 CPU)
+              memory: "128Mi"

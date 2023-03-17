@@ -1,0 +1,24 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: istio-app-gateway
+  namespace: istio-ingress
+spec:
+  selector:
+    istio: istio-app-gateway # use istio default controller
+  servers:
+    #    - port:
+    #        number: 443
+    #        name: https
+    #        protocol: HTTPS
+    #      tls:
+    #        mode: SIMPLE
+    #        credentialName: abc.example.com-credentials
+    #      hosts:
+    #        - "abc.example.com"
+    - port:
+        number: 80
+        name: http
+        protocol: HTTP
+      hosts:
+        - "*"

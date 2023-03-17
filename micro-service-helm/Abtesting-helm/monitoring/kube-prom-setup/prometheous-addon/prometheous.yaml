@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prometheus
+  namespace: monitoring
+  labels:
+    app: prometheus
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: prometheus
+  template:
+    metadata:
+      labels:
+        app: prometheus
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "9090"
+    spec:
+      securityContext:
+        fsGroup: 65534
+        runAsGroup: 65534
+        runAsNonRoot: true
+        runAsUser: 65534
+      containers:
+        - name: prometheus
+          image: prom/prometheus
+          args:
+            - '--storage.tsdb.retention.time=15d'
+            - '--storage.tsdb.path=/prometheus'
+            - '--config.file=/etc/prometheus/prometheus.yml'
+            - '--storage.tsdb.retention.size=95GB'
+          ports:
+            - name: prometeus-web
+              containerPort: 9090
+          volumeMounts:
+            - name: prometheus-config-volume
+              mountPath: /etc/prometheus
+            - name: prometheus-storage-volume
+              mountPath: /prometheus
+      restartPolicy: Always
+      volumes:
+        - name: prometheus-config-volume
+          configMap:
+            defaultMode: 420
+            name: prometheus-config
+        - name: prometheus-storage-volume
+          persistentVolumeClaim:
+            claimName: prometheus-addon-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: prometheus-service
+  namespace: monitoring
+  annotations:
+    prometheus.io/scrape: 'true'
+    prometheus.io/port:   '9090'
+spec:
+  selector:
+    app: prometheus
+  ports:
+    - port: 9090
+      targetPort: prometeus-web

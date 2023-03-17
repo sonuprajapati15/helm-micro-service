@@ -1,0 +1,120 @@
+---
+# Source: konga-ui/templates/namespace.yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: monitoring
+  labels:
+    istio-injection: enabled
+---
+# Source: konga-ui/templates/secretMap.yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: default-konga-ui-secrets
+  namespace: monitoring
+type: Opaque
+data:
+  DB_DATABASE: ZGJfcmVkYWN0ZWQ=
+  DB_PASSWORD: a29uZw==
+  DB_USER: a29uZw==
+  DB_HOST: MTAuOTkuMS4xMg==
+  DB_PORT: NTQzMg==
+  DB_ADAPTER: cG9zdGdyZXM=
+---
+# Source: konga-ui/templates/configMap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: default-konga-ui-configs
+  namespace: monitoring
+data:
+  TZ: Asia/Kolkata
+  SERVER_PORT: "1337"
+  NODE_ENV: development
+---
+# Source: konga-ui/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: konga-ui-service
+  namespace: monitoring
+  labels:
+    app: konga-ui
+spec:
+  selector:
+    app: konga-ui
+    tier: monitoring
+  ports:
+    - port: 1337
+      targetPort: konga-ui-web
+      protocol: TCP
+      name: konga-ui-service
+---
+# Source: konga-ui/templates/kube-state-metric.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: konga-ui-deployment
+  namespace: monitoring
+  labels:
+    app: konga-ui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: konga-ui
+      tier: monitoring
+  template:
+    metadata:
+      labels:
+        app: konga-ui
+        tier: monitoring
+    spec: # Pod spec
+      containers:
+        - name: konga-ui
+          imagePullPolicy: IfNotPresent
+          image: pantsel/konga
+          ports:
+            - containerPort: 1337
+              name: konga-ui-web
+          envFrom:
+            - secretRef:
+                name: default-konga-ui-secrets
+            - configMapRef:
+                name: default-konga-ui-configs
+          resources:
+            limits:
+              cpu: 500m
+              memory: "256Mi"
+            requests:
+              cpu: 300m # 30milliCPUs (1/2 CPU)
+              memory: "128Mi"
+---
+# Source: konga-ui/templates/hpa.yaml
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: konga-ui
+  labels:
+    app: konga-ui
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: konga-ui-deployment
+  minReplicas: 1
+  maxReplicas: 2
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          averageUtilization: 95
+          type: Utilization
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          averageUtilization: 95
+          type: Utilization

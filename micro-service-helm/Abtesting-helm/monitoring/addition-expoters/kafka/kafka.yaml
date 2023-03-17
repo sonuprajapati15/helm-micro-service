@@ -1,0 +1,63 @@
+---
+# Source: elasticsearch/templates/namespace.yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: monitoring
+  labels:
+    istio-injection: enabled
+---
+# Source: monitoring-apps/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: kafka-exp-service
+  namespace: monitoring
+  labels:
+    app: kafka-exp
+spec:
+  selector:
+    app: kafka-exp
+    tier: monitoring
+  ports:
+    - port: 9308
+      targetPort: kafka-exp-1
+      protocol: TCP
+      name: kafka-exp-1
+---
+# Source: monitoring-apps/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kafka-exp
+  namespace: monitoring
+  labels:
+    app: kafka-exp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kafka-exp
+      tier: monitoring
+  template:
+    metadata:
+      labels:
+        app: kafka-exp
+        tier: monitoring
+    spec: # Pod spec
+      containers:
+        - name: kafka-exp-1
+          image: danielqsj/kafka-exporter
+          args:
+            - '--kafka.server=10.10.0.29:9092'
+          ports:
+            - containerPort: 9308
+              name: kafka-exp-1
+          resources:
+            limits:
+              cpu: 500m
+              memory: "256Mi"
+            requests:
+              cpu: 300m # 30milliCPUs (1/2 CPU)
+              memory: "128Mi"
+

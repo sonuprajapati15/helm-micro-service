@@ -1,0 +1,7 @@
+
+### run this command to generate addional config file form ./prometheus dir
+### kubectl create secret generic additional-scrape-configs --from-file=./additional-config/prometheus-additional.yaml --dry-run=client -oyaml > additional-scrape-configs.yaml
+
+- job_name: "nginx"
+  static_configs:
+  - targets: ["nginx-exp-service.monitoring.svc.cluster.local:9113"]

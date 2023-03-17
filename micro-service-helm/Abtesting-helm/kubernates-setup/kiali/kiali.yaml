@@ -1,0 +1,77 @@
+# apiVersion: v1
+# data:
+#   config.yaml: |
+#     auth:
+#       openid: {}
+#       openshift:
+#         client_id_prefix: kiali
+#       strategy: token
+#     dashboard:
+#       grafanaURL: http://grafan.monitoring.svc.cluster.local:3000
+#     deployment:
+#       accessible_namespaces:
+#       - '**'
+#       additional_service_yaml: {}
+#       affinity:
+#           metadata: {}
+#       service_type: ""
+#       tolerations: []
+#       version_label: v1.64.0
+#       view_only_mode: false
+#     external_services:
+#       prometheus:
+#         url: http://prometheus-service.monitoring.svc.cluster.local:9090/
+#       grafana:
+#         in_cluster_url: http://grafan.monitoring.svc.cluster.local:3000/
+#         url: "http://grafan.monitoring.svc.cluster.local:3000/"
+#       custom_dashboards:
+#         enabled: true
+#       istio:
+#         root_namespace: istio-system
+#     identity:
+#       cert_file: ""
+#       private_key_file: ""
+#     istio_namespace: istio-system
+#     kiali_feature_flags:
+#       certificates_information_indicators:
+#         enabled: true
+#         secrets:
+#         - cacerts
+#         - istio-ca-secret
+#       clustering:
+#         autodetect_secrets:
+#           enabled: true
+#           label: kiali.io/multiCluster=true
+#         clusters: []
+#       disabled_features: []
+#       validations:
+#         ignore:
+#         - KIA1201
+#     login_token:
+#       signing_key: l4Z9mscizH4R6lw9
+#     server:
+#       metrics_enabled: true
+#       metrics_port: 9090
+#       port: 20001
+#       web_root: /kiali
+# kind: ConfigMap
+# metadata:
+#   annotations:
+#     kubectl.kubernetes.io/last-applied-configuration: |
+#       {"apiVersion":"v1","data":{"config.yaml":"auth:\n  openid: {}\n  openshift:\n    client_id_prefix: kiali\n  strategy: token\ndashboard:\n  grafanaURL: http://grafan.monitoring.svc.cluster.local:3000\ndeployment:\n  accessible_namespaces:\n  - '**'\n  additional_service_yaml: {}\n  affinity:\n    node: {}\n    pod: {}\n    pod_anti: {}\n  configmap_annotations: {}\n  custom_secrets: []\n  host_aliases: []\n  hpa:\n    api_version: autoscaling/v2\n    spec: {}\n      metadata: {}\n  service_type: \"\"\n  tolerations: []\n  version_label: v1.64.0\n  view_only_mode: false\nexternal_services:\n  prometheus:\n    url: http://prometheus-service.monitoring.svc.cluster.local:9090/\n  grafana:\n    in_cluster_url: http://grafan.monitoring.svc.cluster.local:3000/\n    url: \"http://grafan.monitoring.svc.cluster.local:3000/\"\n  custom_dashboards:\n    enabled: true\n  istio:\n    root_namespace: istio-system\nidentity:\n  cert_file: \"\"\n  private_key_file: \"\"\nistio_namespace: istio-system\nkiali_feature_flags:\n  certificates_information_indicators:\n    enabled: true\n    secrets:\n    - cacerts\n    - istio-ca-secret\n  clustering:\n    autodetect_secrets:\n      enabled: true\n      label: kiali.io/multiCluster=true\n    clusters: []\n  disabled_features: []\n  validations:\n    ignore:\n    - KIA1201\nlogin_token:\n  signing_key: l4Z9mscizH4R6lw9\nserver:\n  metrics_enabled: true\n  metrics_port: 9090\n  port: 20001\n  web_root: /kiali\n"},"kind":"ConfigMap","metadata":{"annotations":{"meta.helm.sh/release-name":"kiali-server","meta.helm.sh/release-namespace":"istio-system"},"creationTimestamp":"2023-03-10T04:40:09Z","labels":{"app":"kiali","app.kubernetes.io/instance":"kiali","app.kubernetes.io/managed-by":"Helm","app.kubernetes.io/name":"kiali","app.kubernetes.io/part-of":"kiali","app.kubernetes.io/version":"v1.64.0","helm.sh/chart":"kiali-server-1.64.0","version":"v1.64.0"},"name":"kiali","namespace":"istio-system","resourceVersion":"9027031","uid":"78ac7425-41a1-43ab-b206-4ff632c12435"}}
+#     meta.helm.sh/release-name: kiali-server
+#     meta.helm.sh/release-namespace: istio-system
+#   creationTimestamp: "2023-03-10T04:40:09Z"
+#   labels:
+#     app: kiali
+#     app.kubernetes.io/instance: kiali
+#     app.kubernetes.io/managed-by: Helm
+#     app.kubernetes.io/name: kiali
+#     app.kubernetes.io/part-of: kiali
+#     app.kubernetes.io/version: v1.64.0
+#     helm.sh/chart: kiali-server-1.64.0
+#     version: v1.64.0
+#   name: kiali
+#   namespace: istio-system
+#   resourceVersion: "9098602"
+#   uid: 78ac7425-41a1-43ab-b206-4ff632c12435

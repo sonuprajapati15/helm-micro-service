@@ -1,0 +1,21 @@
+project:
+  namespace: default
+  app_name: config
+  autoscaling:
+    enabled: true
+    default_replica: 15
+    minReplicas: 15
+    maxReplicas: 15
+  service_port: 5003
+  image:
+    name: config
+    containerPort: 8080
+  context: /config
+  health_path: /status
+  resources:
+    limits:
+      cpu: 3000m
+      memory: 6Gi
+    requests:
+      cpu: 300m
+      memory: 4Gi

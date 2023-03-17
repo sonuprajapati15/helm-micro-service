@@ -1,0 +1,21 @@
+project:
+  namespace: default
+  app_name: rbac
+  autoscaling:
+    enabled: true
+    default_replica: 3
+    minReplicas: 2
+    maxReplicas: 4
+  service_port: 5005
+  image:
+    name: rbac
+    containerPort: 8080
+  context: /rbac
+  health_path: /status
+  resources:
+    limits:
+      cpu: 1500m
+      memory: 3Gi
+    requests:
+      cpu: 300m
+      memory: 2Gi

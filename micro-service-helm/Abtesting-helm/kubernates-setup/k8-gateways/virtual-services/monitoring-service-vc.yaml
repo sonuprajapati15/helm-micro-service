@@ -1,0 +1,69 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  namespace: monitoring
+  name: monitoring-service-vc
+spec:
+  gateways:
+    - istio-ingress/istio-ingress-monitoring
+  hosts:
+    - "montioring-sit.com"
+  http:
+  - name: kibana-path
+    match:
+    - uri:
+        prefix: /kibana
+    route:
+    - destination:
+        host: kibana.monitoring.svc.cluster.local
+    retries:
+      attempts: 3
+      perTryTimeout: 10s
+  - name: kiali-path
+    match:
+    - uri:
+        prefix: /kiali
+    route:
+    - destination:
+        host: kiali.istio-system.svc.cluster.local
+        port:
+          number: 20001
+    retries:
+      attempts: 3
+      perTryTimeout: 10s
+  - name: grafana-path
+    match:
+      - uri:
+          exact: /grafana
+      - uri:
+          prefix: /grafana/
+    rewrite:
+      uri: /
+    route:
+      - destination:
+          host: grafana.monitoring.svc.cluster.local
+    retries:
+      attempts: 3
+      perTryTimeout: 10s
+  - name: prometheus-ui-path
+    match:
+    - uri:
+        prefix: /prometheus
+    rewrite:
+      uri: /prometheus
+    route:
+    - destination:
+        host: prometheus-service.monitoring.svc.cluster.local
+    retries:
+      attempts: 3
+      perTryTimeout: 10s
+  - name: konga-ui-path
+    match:
+    - uri:
+        prefix: /
+    route:
+    - destination:
+        host: konga-ui-service.monitoring.svc.cluster.local
+    retries:
+      attempts: 3
+      perTryTimeout: 10s

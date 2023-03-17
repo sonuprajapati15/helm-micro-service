@@ -1,0 +1,94 @@
+---
+# Source: elasticsearch/templates/namespace.yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: monitoring
+  labels:
+    istio-injection: enabled
+---
+# Source: monitoring-apps/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: elastic-exp-service
+  namespace: monitoring
+  labels:
+    app: elastic-exp
+spec:
+  selector:
+    app: elastic-exp
+    tier: monitoring
+  ports:
+    - port: 9114
+      targetPort: es-exp-port-1
+      protocol: TCP
+      name: es-exp-port-1
+    - port: 9115
+      targetPort: es-exp-port-2
+      protocol: TCP
+      name: es-exp-port-2
+---
+# Source: monitoring-apps/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: elastic-exp
+  namespace: monitoring
+  labels:
+    app: elastic-exp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: elastic-exp
+      tier: monitoring
+  template:
+    metadata:
+      labels:
+        app: elastic-exp
+        tier: monitoring
+    spec: # Pod spec
+      containers:
+        - name: elastic-exp-1
+          image: quay.io/prometheuscommunity/elasticsearch-exporter:latest
+          ports:
+            - containerPort: 9114
+              name: es-exp-port-1
+          args:
+            - "--es.uri=http://10.10.0.33:9200"
+            - "--es.timeout=60s"
+            - "--web.listen-address=:9114"
+            # - '--es.all=true'
+            # - '--es.cluster_settings=true'
+            # - '--es.shards=true'
+            # - '--es.indices_settings=true'
+            # - '--es.indices	=true'
+          resources:
+            limits:
+              cpu: 400m
+              memory: "256Mi"
+            requests:
+              cpu: 300m # 300milliCPUs
+              memory: "128Mi"
+        # - name: elastic-exp-2
+        #   image: quay.io/prometheuscommunity/elasticsearch-exporter:latest
+        #   ports:
+        #     - containerPort: 9115
+        #       name: es-exp-port-2
+        #   args:
+        #     - "--es.uri=http://10.10.0.31:9200"
+        #     - "--es.timeout=60s"
+        #     - "--web.listen-address=:9115"
+        #     # - '--es.all=true'
+        #     # - '--es.cluster_settings=true'
+        #     # - '--es.shards=true'
+        #     # - '--es.indices_settings=true'
+        #     # - '--es.indices	=true'
+        #   resources:
+        #     limits:
+        #       cpu: 400m
+        #       memory: "256Mi"
+        #     requests:
+        #       cpu: 300m # 300milliCPUs
+        #       memory: "128Mi"

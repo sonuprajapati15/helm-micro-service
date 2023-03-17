@@ -1,0 +1,85 @@
+project:
+  namespace: default
+  tier: backend
+  app_name: demo
+  image_pull_policy: Always
+  autoscaling:
+    default_replica: 1
+    enabled: false
+    minReplicas: 1
+    maxReplicas: 1
+    targetCPUUtilizationPercentage: 75
+    targetMemoryUtilizationPercentage: 75
+  TZ: Asia/Kolkata
+  java_heap_config: "-Xmx2G -Xms512M"
+  context:
+  health_path:
+  service_port: 80
+  target_port: 8080
+  image:
+    containerPort: 8080
+    registry: asia-south1-docker.pkg.dev/project-jiomarket-non-prod/ab-testing/
+    name: abtesting-null
+    tag: latest
+  default_configs: default-backend-configs
+  default_secrets: default-backend-secrets
+  resources:
+    limits:
+      cpu: 4
+      memory: "4Gi"
+    requests:
+      cpu: 0.5 # 500milliCPUs (1/2 CPU)
+      memory: "3Gi"
+  services:
+    config:
+      name: config-service
+      port: 5003
+    gateway:
+      name: gateway-service
+      port: 5004
+    rbac:
+      name: rbac-service
+      port: 5005
+    analyzer:
+      name: analyzer-service
+      port: 5002
+    kong:
+      name: kong
+      endpoint: 10.10.0.3:8001
+  kafka:
+    bootstrap_servers: 10.10.0.28:9092,10.10.0.29:9092,10.10.0.30:9092
+  redis:
+    host: MTAuOTkuMC41
+    passowrd: IA==
+    port: 6379
+    timeout: 60000
+    max_pool_connection_size: 20
+    min_idle_connection: 2
+  postgres:
+    config:
+      master:
+        url: MTAuOTkuMS41OjU0MzI=
+        username: YWJ0ZXN0aW5nQHVzZXI=
+        password: QGJ0MyR0MW45QHU1M3I=
+      slave:
+        url: MTAuOTkuMS43OjU0MzI=
+        username: YWJ0ZXN0aW5nQHVzZXI=
+        password: QGJ0MyR0MW45QHU1M3I=
+    rbac:
+      master:
+        url: MTAuOTkuMS41OjU0MzI=
+        username: YWJ0ZXN0aW5nQHVzZXI=
+        password: QGJ0MyR0MW45QHU1M3I=
+      slave:
+        url: MTAuOTkuMS43OjU0MzI=
+        username: YWJ0ZXN0aW5nQHVzZXI=
+        password: QGJ0MyR0MW45QHU1M3I=
+    analyzer:
+      master:
+        url: MTAuOTkuMS41OjU0MzI=
+        username: YWJ0ZXN0aW5nQHVzZXI=
+        password: QGJ0MyR0MW45QHU1M3I=
+      slave:
+        url: MTAuOTkuMS43OjU0MzI=
+        username: YWJ0ZXN0aW5nQHVzZXI=
+        password: QGJ0MyR0MW45QHU1M3I=

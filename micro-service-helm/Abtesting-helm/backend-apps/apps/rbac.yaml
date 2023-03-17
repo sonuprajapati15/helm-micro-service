@@ -1,0 +1,150 @@
+---
+# Source: backend-apps/templates/namespace.yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: default
+  labels:
+    istio-injection: enabled
+---
+# Source: backend-apps/templates/secretMap.yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: default-backend-secrets
+  namespace: default
+data:
+  CONFIG_MASTER_URL: MTAuOTkuMS41OjU0MzI=
+  CONFIG_MASTER_USERNAME: YWJ0ZXN0aW5nQHVzZXI=
+  CONFIG_MASTER_PASS: QGJ0MyR0MW45QHU1M3I=
+  CONFIG_SLAVE_URL: MTAuOTkuMS43OjU0MzI=
+  CONFIG_SLAVE_USERNAME: YWJ0ZXN0aW5nQHVzZXI=
+  CONFIG_SLAVE_PASS: QGJ0MyR0MW45QHU1M3I=
+  ANALYSER_MASTER_URL: MTAuOTkuMS41OjU0MzI=
+  ANALYSER_MASTER_USERNAME: YWJ0ZXN0aW5nQHVzZXI=
+  ANALYSER_MASTER_PASS: QGJ0MyR0MW45QHU1M3I=
+  ANALYSER_SLAVE_URL: MTAuOTkuMS43OjU0MzI=
+  ANALYSER_SLAVE_USERNAME: YWJ0ZXN0aW5nQHVzZXI=
+  ANALYSER_SLAVE_PASS: QGJ0MyR0MW45QHU1M3I=
+  RBAC_MASTER_URL: MTAuOTkuMS41OjU0MzI=
+  RBAC_MASTER_USERNAME: YWJ0ZXN0aW5nQHVzZXI=
+  RBAC_MASTER_PASS: QGJ0MyR0MW45QHU1M3I=
+  RBAC_SLAVE_URL: MTAuOTkuMS43OjU0MzI=
+  RBAC_SLAVE_USERNAME: YWJ0ZXN0aW5nQHVzZXI=
+  RBAC_SLAVE_PASS: QGJ0MyR0MW45QHU1M3I=
+  REDIS_HOST: MTAuOTkuMC41
+  REDIS_PASS: IA==
+---
+# Source: backend-apps/templates/configMap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: default-backend-configs
+  namespace: default
+data:
+  CONFIG_URL: "config-service.default.svc.cluster.local:5003"
+  ANALYZER_URL: "analyzer-service.default.svc.cluster.local:5002"
+  RBAC_URL: "rbac-service.default.svc.cluster.local:5005"
+  GATEWAY_URL: "gateway-service.default.svc.cluster.local:5004"
+  KONG_ADMIN_HOST: 10.10.0.3:8001
+  BOOTSTRAP_SERVER: 10.10.0.28:9092,10.10.0.29:9092,10.10.0.30:9092
+  TZ: Asia/Kolkata
+  REDIS_PORT: "6379"
+  REDIS_TIMEOUT: "60000"
+  REDIS_CONNECTION_MAXIMUM_POOL_SIZE: "20"
+  REDIS_CONNECTION_MINIMUM_IDLE: "2"
+  SERVER_PORT: "8080"
+  JAVA_OPTS: -Xmx2G -Xms512M
+  KAFKA_HEAP_OPTS: -Xmx2G -Xms512M
+  JVM_ARGS: -Xmx2G -Xms512M
+---
+# Source: backend-apps/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: rbac-service
+  namespace: default
+  labels:
+    app: rbac
+spec:
+  selector:
+    app: rbac
+    tier: backend
+  ports:
+    - port: 5005
+      targetPort: 8080
+      protocol: TCP
+      name: rbac-service
+---
+# Source: backend-apps/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rbac-deployment
+  namespace: default
+  labels:
+    app: rbac
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: rbac
+      tier: backend
+  template:
+    metadata:
+      labels:
+        app: rbac
+        tier: backend
+    spec: # Pod spec
+      containers:
+        - name: rbac
+          imagePullPolicy: Always
+          image: asia-south1-docker.pkg.dev/project-jiomarket-non-prod/ab-testing/rbac:latest
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: default-backend-configs
+            - secretRef:
+                name: default-backend-secrets
+          # livenessProbe:
+          #   httpGet:
+          #     path: /rbac//status
+          #     port: 8080
+          #   initialDelaySeconds: 120
+          #   periodSeconds: 20
+          resources:
+            requests:
+              memory: 2Gi
+              cpu: 300m
+            limits:
+              memory: 3Gi
+              cpu: 1500m
+---
+# Source: backend-apps/templates/hpa.yaml
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: rbac
+  labels:
+    app: rbac
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: rbac-deployment
+  minReplicas: 2
+  maxReplicas: 4
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          averageUtilization: 75
+          type: Utilization
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          averageUtilization: 75
+          type: Utilization

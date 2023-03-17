@@ -1,0 +1,21 @@
+project:
+  namespace: default
+  app_name: gateway
+  autoscaling:
+    enabled: true
+    default_replica: 6
+    minReplicas: 6
+    maxReplicas: 6
+  service_port: 5004
+  image:
+    name: gateway
+    containerPort: 8080
+  context: /gateway
+  health_path: /status
+  resources:
+    limits:
+      cpu: 2500m
+      memory: 6Gi
+    requests:
+      cpu: 500m
+      memory: 1Gi

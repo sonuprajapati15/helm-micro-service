@@ -1,0 +1,30 @@
+project:
+  namespace: default
+  tier: frontend
+  app_name: demo
+  image_pull_policy: Always
+  autoscaling:
+    default_replica: 1
+    enabled: true
+    minReplicas: 1
+    maxReplicas: 6
+    targetCPUUtilizationPercentage: 85
+    targetMemoryUtilizationPercentage: 85
+  TZ: Asia/Kolkata
+  context: /
+  service_port: 5000
+  target_port: 8080
+  base_url: https://abtesting-sit.com
+  image:
+    containerPort: 8080
+    registry: asia-south1-docker.pkg.dev/project-jiomarket-non-prod/ab-testing/
+    name: abtesting-null
+    tag: latest
+  default_configs: default-frontend-configs
+  resources:
+    limits:
+      cpu: 100m
+      memory: 128Mi
+    requests:
+      cpu: 50m # 500milliCPUs (1/2 CPU)
+      memory: 64Mi
