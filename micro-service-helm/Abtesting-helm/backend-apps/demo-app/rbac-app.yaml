@@ -5,7 +5,7 @@ project:
     enabled: true
     default_replica: 3
     minReplicas: 2
-    maxReplicas: 4
+    maxReplicas: 5
   service_port: 5005
   image:
     name: rbac
@@ -14,8 +14,8 @@ project:
   health_path: /status
   resources:
     limits:
-      cpu: 1500m
+      cpu: 2000m
       memory: 3Gi
     requests:
-      cpu: 300m
-      memory: 2Gi
+      cpu: 1500m
+      memory: 3Gi

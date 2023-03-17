@@ -2,7 +2,7 @@
 
 ## build docker image with plugins for our purpose
 WORKDIR="`pwd`"
-GCP_PROJECT="project-jiomarket-non-prod"
+GCP_PROJECT="sr-pr-3p-ecom-abtesting-np"
 
 DEVIDE_PATH=${WORKDIR##*/}
 CRD="fluentd"

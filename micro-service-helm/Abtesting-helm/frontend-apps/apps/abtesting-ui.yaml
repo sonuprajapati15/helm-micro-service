@@ -59,7 +59,7 @@ spec:
       containers:
         - name: abtesting-ui
           imagePullPolicy: Always
-          image: asia-south1-docker.pkg.dev/project-jiomarket-non-prod/ab-testing/abtesting-ui:latest
+          image: asia-south1-docker.pkg.dev/sr-pr-3p-ecom-abtesting-np/ab-testing/abtesting-ui:latest
           ports:
             - containerPort: 8080
           envFrom:

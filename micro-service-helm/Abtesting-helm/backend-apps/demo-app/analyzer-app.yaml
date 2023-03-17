@@ -5,7 +5,7 @@ project:
     enabled: true
     default_replica: 6
     minReplicas: 6
-    maxReplicas: 6
+    maxReplicas: 8
   service_port: 5002
   image:
     name: analyzer
@@ -14,8 +14,8 @@ project:
   health_path: /status
   resources:
     limits:
-      cpu: 2500m
+      cpu: 3000m
       memory: 4Gi
     requests:
-      cpu: 200m
-      memory: 1Gi
+      cpu: 2000m
+      memory: 3Gi

@@ -18,7 +18,7 @@ project:
   target_port: 8080
   image:
     containerPort: 8080
-    registry: asia-south1-docker.pkg.dev/project-jiomarket-non-prod/ab-testing/
+    registry: asia-south1-docker.pkg.dev/sr-pr-3p-ecom-abtesting-np/ab-testing/
     name: abtesting-null
     tag: latest
   default_configs: default-backend-configs

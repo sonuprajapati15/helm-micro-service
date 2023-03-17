@@ -17,7 +17,7 @@ project:
   base_url: https://abtesting-sit.com
   image:
     containerPort: 8080
-    registry: asia-south1-docker.pkg.dev/project-jiomarket-non-prod/ab-testing/
+    registry: asia-south1-docker.pkg.dev/sr-pr-3p-ecom-abtesting-np/ab-testing/
     name: abtesting-null
     tag: latest
   default_configs: default-frontend-configs

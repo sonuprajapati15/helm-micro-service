@@ -14,8 +14,8 @@ project:
   health_path: /status
   resources:
     limits:
-      cpu: 3000m
+      cpu: 4500m
       memory: 6Gi
     requests:
-      cpu: 300m
+      cpu: 4000m
       memory: 4Gi

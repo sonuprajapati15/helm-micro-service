@@ -3,8 +3,8 @@ project:
   app_name: gateway
   autoscaling:
     enabled: true
-    default_replica: 6
-    minReplicas: 6
+    default_replica: 4
+    minReplicas: 4
     maxReplicas: 6
   service_port: 5004
   image:
@@ -14,8 +14,8 @@ project:
   health_path: /status
   resources:
     limits:
-      cpu: 2500m
-      memory: 6Gi
+      cpu: 3000m
+      memory: 4Gi
     requests:
-      cpu: 500m
-      memory: 1Gi
+      cpu: 1500m
+      memory: 3Gi

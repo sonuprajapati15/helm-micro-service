@@ -25,7 +25,7 @@ spec:
       containers:
         - name: fluentd
           imagePullPolicy: "Always"
-          image: asia-south1-docker.pkg.dev/project-jiomarket-non-prod/ab-testing/fluentd:latest
+          image: asia-south1-docker.pkg.dev/sr-pr-3p-ecom-abtesting-np/ab-testing/fluentd:latest
           env:
             - name:  FLUENT_ELASTICSEARCH_HOST
               value: "10.10.0.33"
